@@ -1,0 +1,9 @@
+[submodule "libs/lume"]
+	path = libs/lume
+	url = https://github.com/rxi/lume.git
+[submodule "libs/middleclass"]
+	path = libs/middleclass
+	url = https://github.com/kikito/middleclass.git
+[submodule "libs/middleclass-extras"]
+	path = libs/middleclass-extras
+	url = https://github.com/kikito/middleclass-extras.git
