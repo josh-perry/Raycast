@@ -4,9 +4,9 @@
 [submodule "libs/middleclass"]
 	path = libs/middleclass
 	url = https://github.com/kikito/middleclass.git
-[submodule "libs/middleclass-extras"]
-	path = libs/middleclass-extras
-	url = https://github.com/kikito/middleclass-extras.git
 [submodule "libs/Simple-Tiled-Implementation"]
 	path = libs/Simple-Tiled-Implementation
 	url = https://github.com/karai17/Simple-Tiled-Implementation.git
+[submodule "libs/stateful.lua"]
+	path = libs/stateful.lua
+	url = https://github.com/kikito/stateful.lua.git
