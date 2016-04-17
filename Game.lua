@@ -55,12 +55,56 @@ function Game:initialize()
   player.dir_y = 0
   player.plane_x = 0
   player.plane_y = 0.66
+  player.move_speed = 5
+  player.turn_speed = 3
 
   self.time = 0
   self.old_time = 0
 end
 
 function Game:update(dt)
+  -- Forwards
+  if love.keyboard.isDown("w") then
+    local new_x = player.x + player.dir_x * (player.move_speed * dt)
+    local new_y = player.y + player.dir_y * (player.move_speed * dt)
+
+    if map[math.floor(new_x)][math.floor(player.y)] == 0 then
+      player.x = new_x
+    end
+
+    if map[math.floor(player.x)][math.floor(new_y)] == 0 then
+      player.y = new_y
+    end
+  end
+
+  -- Left
+  if love.keyboard.isDown("a") then
+    self:turn_player(dt, player.turn_speed)
+  end
+
+  if love.keyboard.isDown("d") then
+    self:turn_player(dt, -player.turn_speed)
+  end
+end
+
+function Game:turn_player(dt, speed)
+  local amount = speed * dt
+
+  local old_dir_x = player.dir_x
+  local old_dir_y = player.dir_y
+
+  player.dir_x = old_dir_x * math.cos(amount) -
+                 old_dir_y * math.sin(amount)
+  player.dir_y = old_dir_x * math.sin(amount) +
+                 old_dir_y * math.cos(amount)
+
+   local old_plane_x = player.plane_x
+   local old_plane_y = player.plane_y
+
+   player.plane_x = old_plane_x * math.cos(amount) -
+                    old_plane_y * math.sin(amount)
+   player.plane_y = old_plane_x * math.sin(amount) +
+                    old_plane_y * math.cos(amount)
 end
 
 function Game:draw()
