@@ -34,7 +34,8 @@ local colors = {
   {100, 255, 100},
   {255, 255, 100},
   {255, 100, 100},
-  {100, 255, 255}
+  {100, 255, 255},
+  {0, 0, 0}
 }
 
 local light_colors = {
@@ -42,7 +43,8 @@ local light_colors = {
   {200, 255, 200},
   {255, 255, 200},
   {255, 200, 200},
-  {200, 255, 255}
+  {200, 255, 255},
+  {50, 50, 50}
 }
 
 local screen_width = love.graphics:getWidth()
@@ -107,9 +109,22 @@ function Game:turn_player(dt, speed)
                     old_plane_y * math.cos(amount)
 end
 
+function Game:draw_sky()
+  love.graphics.setColor(100, 150, 255)
+  love.graphics.rectangle("fill", 0, 0, screen_width, screen_height / 2)
+end
+
+function Game:draw_ground()
+    love.graphics.setColor(255, 175, 100)
+    love.graphics.rectangle("fill", 0, screen_height / 2, screen_width, screen_height / 2)
+end
+
 function Game:draw()
   local w = screen_width
   local h = screen_height
+
+  self:draw_sky()
+  self:draw_ground()
 
   for x = 1, w do
     local cam_x = 2 * x / w - 1
